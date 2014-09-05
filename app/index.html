@@ -341,13 +341,13 @@
         </section>
 
         <section class="interactive">
-            <div class="container">
+            <div class="container container-large">
                 <div class="row">
-                    <div class="col-sm-10">
+                    <div class="col-sm-9">
                         <div id="pop-chart"></div>
                     </div>
-                    <div class="col-sm-2">
-                        <h4>Counties in Nebraska</h4>
+                    <div class="col-sm-3">
+                        <h4>Selected Counties in Nebraska & Wyoming</h4>
                         <div class="population-list">
                         </div>
                     </div>
@@ -474,16 +474,7 @@
             </div>
         </section>
 
-        <section class="image-featured-behind">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm-12 image-featured-behind-gap image-featured-behind-small" id="image-featured-behind"></div>
-                </div>
-                <span class="image-caption image-caption-left">This is a image featured behind caption. It moves with the lower panel over the featured image.</span>
-            </div>
-        </section>
-
-        <section class="copy last">
+        <section class="copy">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
@@ -494,6 +485,15 @@
                 </div>
             </div>
         </section>
+
+        <section class="image-featured-behind footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12 image-featured-behind-gap image-featured-behind-large" id="image-featured-behind"></div>
+                </div>
+            </div>
+        </section>
+
 
         <footer>
             <div class="container-fluid">
@@ -567,7 +567,7 @@
         <script>
 
             var margin = {top: 20, right: 80, bottom: 30, left: 50},
-                width = 800 - margin.left - margin.right,
+                width = 900 - margin.left - margin.right,
                 height = 800 - margin.top - margin.bottom;
 
             var parseDate = d3.time.format("%Y").parse;
@@ -599,7 +599,7 @@
               .append("g")
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-            d3.tsv("data/pop-nebraska-counties.tsv", function(error, data) {
+            d3.tsv("data/pop-selected-counties.tsv", function(error, data) {
                 color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
 
                 data.forEach(function(d) {
@@ -675,9 +675,9 @@
                         d3.select("#" + c).style("stroke", "lightgray").style("stroke-width", "1px");
                     });
 
-                d3.select('.county #scotts-bluff-county')
-                    .style("stroke", "#b42f1d", "important")
-                    .style("stroke-width", "2px", "important");
+                d3.select('.county #scotts-bluff-county-ne').style("stroke", "#b42f1d", "important").style("stroke-width", "2px", "important").moveToFront();
+
+
 
               // county.append("text")
               //     .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
